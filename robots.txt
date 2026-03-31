@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://furniture-home-eight.vercel.app/sitemap.xml

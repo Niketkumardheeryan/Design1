@@ -12,13 +12,14 @@
     <meta name="theme-color" content="#333333" />
     <meta name="format-detection" content="telephone=yes" />
     <title>Furnitures Home | Wooden Furniture Store Sahibabad, Ghaziabad</title>
-    <!-- When you have a live URL, add: <link rel="canonical" href="https://your-domain.com/" /> and og:url meta. -->
+    <link rel="canonical" href="https://furniture-home-eight.vercel.app/" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Furnitures Home | Wooden Furniture Ghaziabad" />
     <meta
       property="og:description"
       content="Wooden furniture Sahibabad, Ghaziabad — living, dining, bedroom &amp; custom. WhatsApp +91 99114 68719."
     />
+    <meta property="og:url" content="https://furniture-home-eight.vercel.app/" />
     <meta property="og:locale" content="en_IN" />
     <meta
       property="og:image"
@@ -1101,6 +1102,9 @@
           document.body.classList.remove("nav-menu-open");
           document.body.style.overflow = "";
           if (header) header.style.zIndex = "";
+          nav.style.zIndex = "";
+          backdrop.style.zIndex = "";
+          toggle.style.zIndex = "";
           toggle.setAttribute("aria-expanded", "false");
           toggle.setAttribute("aria-label", "Open menu");
         }
@@ -1110,8 +1114,13 @@
           backdrop.classList.add("is-open");
           backdrop.setAttribute("aria-hidden", "false");
           document.body.classList.add("nav-menu-open");
-          // Ensure the drawer is above the backdrop on mobile (header is z-index:50 in CSS).
+          // Ensure the drawer is above the backdrop on mobile.
+          // `.site-header` has z-index:50 and creates a stacking context, so we raise it here.
           if (header) header.style.zIndex = "90";
+          // Some mobile browsers still treat the backdrop as top-most; force explicit stacking.
+          nav.style.zIndex = "95";
+          toggle.style.zIndex = "96";
+          backdrop.style.zIndex = "80";
           toggle.setAttribute("aria-expanded", "true");
           toggle.setAttribute("aria-label", "Close menu");
         }
